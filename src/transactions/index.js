@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Head, Titulo, Options, ButtonSecondary, ButtonPrimary, Table, Td, Th, Tr, BoldTd, TipoIdTd, ColorTd, FilterContainer, Input, Select, Option, InputContainer, FilterDiv } from './styles';
+import Modal from '../modalTransactions/index.js';
+
 import filterIcon from '../assets/icons/filter.svg';
 import downloadIcon from '../assets/icons/download.svg';
 import recebimentoIcon from '../assets/icons/recebimento.svg';
@@ -33,6 +35,13 @@ const statusPedidos = ['Pago', 'Pendente', 'Cancelado'];
 
 function Transactions() {
     const [showFilter, setShowFilter] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedData, setSelectedData] = useState(null);
+
+    const handleRowClick = (item) => {
+        setSelectedData(item);
+        setModalOpen(true);
+    };
 
     return (
     <>
@@ -127,7 +136,7 @@ function Transactions() {
             </thead>
             <tbody>
                 {data.map((item, index) => (
-                <Tr key={index}>
+                <Tr key={index} onClick={() => handleRowClick(item)}>
                 <TipoIdTd>
                     {item.tipo === 'transferencia' ? (
                     <>
@@ -159,6 +168,7 @@ function Transactions() {
             </Tr>
         ))}
         </tbody>
+        <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} data={selectedData} />
     </Table>
     </>
 );
