@@ -44,9 +44,6 @@ export const ButtonSecondary = styled.button`
   border-radius: 6px;
   background-color: ${cores.white};
   color: ${props => (props.open ? `${cores.primaryRed}` : `${cores.secondaryGray400}`)};
-  width: 8rem;
-  height: 3rem;
-  padding-left: 16px;
   display: flex;
   align-items: center;
 
@@ -70,6 +67,12 @@ export const Th = styled.th`
 
 export const Td = styled.td`
   padding: 10px;
+
+  button {
+  background-color: white;
+  padding: 0px;
+  border: none;
+  }
 `;
 
 export const BoldTd = styled(Td)`
@@ -77,7 +80,20 @@ export const BoldTd = styled(Td)`
 `;
 
 export const ColorTd = styled(Td)`
+  display: flex;
   color: ${cores.green500}
+`;
+
+export const ColorTdRed = styled(Td)`
+  color: ${cores.primaryRed}
+`;
+
+export const ColorTdGreen = styled(Td)`
+  color: ${cores.green500}
+`;
+
+export const OptionsTd = styled.td`
+  display: flex;
 `;
 
 export const TipoIdTd = styled(Td)`
